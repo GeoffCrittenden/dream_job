@@ -1,0 +1,13 @@
+# inherit_from: .rubocop_todo.yml
+
+Metrics/LineLength:
+  Exclude:
+    - 'config/**/*'
+    - '*file'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'test/**/*'
+
+Style/Documentation:
+  Enabled: false
