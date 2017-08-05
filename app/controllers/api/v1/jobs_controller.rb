@@ -11,8 +11,12 @@ module Api
 
       def show
         response = fetch_response
-        status, msg = no_jobs_available?(response)
-        render status: status, json: { status: msg }
+        if no_jobs_available?(response)
+          render status: 200, json: { status: :no_jobs }
+        else
+          Notifier.available_job!
+          render status: 200, json: { status: :job_available }
+        end
       end
 
       private
@@ -30,8 +34,7 @@ module Api
       end
 
       def no_jobs_available?(response)
-        return [404, :not_found] if response.body.include?(NO_JOBS_STRING)
-        [200, :ok]
+        response.body.include?(NO_JOBS_STRING)
       end
     end
   end
