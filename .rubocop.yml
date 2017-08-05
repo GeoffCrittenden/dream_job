@@ -1,9 +1,14 @@
 # inherit_from: .rubocop_todo.yml
 
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - 'spec/*_helper.rb'
+
 Metrics/LineLength:
   Exclude:
-    - 'config/**/*'
     - '*file'
+    - 'config/**/*'
 
 Style/ClassAndModuleChildren:
   Exclude:
@@ -11,3 +16,7 @@ Style/ClassAndModuleChildren:
 
 Style/Documentation:
   Enabled: false
+
+Style/SymbolArray:
+  Exclude:
+    - 'config/routes.rb'
