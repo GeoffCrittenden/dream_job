@@ -2,11 +2,9 @@ module Sms
   class Client
     class << self
       def send!
-        client.messages.create(
-          from: FROM_PHONE_NUMBER,
-          to:   TO_PHONE_NUMBER,
-          body: message
-        )
+        client.messages.create(from: FROM_PHONE_NUMBER,
+                               to:   TO_PHONE_NUMBER,
+                               body: message)
       end
 
       private
