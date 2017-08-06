@@ -1,0 +1,12 @@
+language: ruby
+rvm: 2.4.1
+cache: bundler
+bundler_args: --without development
+env:
+  global:
+    - JOBS_AVAILABLE_MESSAGE="Jobs have become available!"
+    - NO_JOBS_MESSAGE="We don't have any open positions right now"
+    - SITE_DOWN_MESSAGE="Jobs page is down!"
+script:
+  - script/run_rubocop.sh
+  - bundle exec rspec

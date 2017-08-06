@@ -10,6 +10,9 @@
 # Ignore local configs.
 config/etc/local/**/*
 
+# Ignore test suite formatting
+.rspec
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
