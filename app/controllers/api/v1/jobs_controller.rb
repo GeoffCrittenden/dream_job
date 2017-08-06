@@ -22,7 +22,7 @@ module Api
       private
 
       def request_uri
-        URI(DreamJob::CONFIG.job_info.base_url)
+        URI(JOBS_URL)
       end
 
       def fetch_response
@@ -34,7 +34,7 @@ module Api
       end
 
       def no_jobs_available?(response)
-        response.body.include?(NO_JOBS_STRING)
+        response.body.include?(NO_JOBS_MESSAGE)
       end
     end
   end

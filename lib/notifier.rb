@@ -1,7 +1,7 @@
 class Notifier
   class << self
     def available_job!
-      nil
+      Sms::Client.send!
     end
   end
 end

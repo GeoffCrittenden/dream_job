@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 describe Api::V1::JobsController, type: :controller do
-  let(:test_response)      { Net::HTTPOK.new(nil, 200, 'OK') }
-  let(:no_jobs_avail_body) { NO_JOBS_STRING }
-  let(:jobs_avail_body)    { '' }
+  let(:test_response) { Net::HTTPOK.new(nil, 200, 'OK') }
 
   before do
     allow(Net::HTTP).to receive(:get_response).and_return(test_response)
@@ -16,19 +14,19 @@ describe Api::V1::JobsController, type: :controller do
   end
 
   it 'knows when there are no available jobs' do
-    allow(test_response).to receive(:body).and_return(no_jobs_avail_body)
+    allow(test_response).to receive(:body).and_return(NO_JOBS_MESSAGE)
     get :show
     expect(response.body).to eq({ status: :no_jobs }.to_json)
   end
 
   it 'knows when there are available jobs' do
-    allow(test_response).to receive(:body).and_return(jobs_avail_body)
+    allow(test_response).to receive(:body).and_return('')
     get :show
     expect(response.body).to eq({ status: :job_available }.to_json)
   end
 
   it 'calls the Notifier when there are jobs available' do
-    allow(test_response).to receive(:body).and_return(jobs_avail_body)
+    allow(test_response).to receive(:body).and_return('')
     expect(Notifier).to receive(:available_job!)
     get :show
   end
