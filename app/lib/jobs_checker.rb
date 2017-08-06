@@ -1,8 +1,15 @@
 class JobsChecker
   class << self
     def check_for_jobs
-      return Notifier.available_job! unless no_jobs_available?(fetch_response)
-      puts "\n[#{Time.now.strftime('%D - %T')}] - #{NO_JOBS_MESSAGE}"
+      response = fetch_response
+
+      return Notifier.site_down! unless response.is_a?(Net::HTTPSuccess)
+
+      if no_jobs_available?(response)
+        puts "\n[#{Time.now.strftime('%D - %T')}] - #{NO_JOBS_MESSAGE}"
+      else
+        Notifier.available_job!
+      end
     end
 
     private

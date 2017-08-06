@@ -1,10 +1,10 @@
 module Sms
   class Client
     class << self
-      def send!
+      def send!(status)
         client.messages.create(from: FROM_PHONE_NUMBER,
                                to:   TO_PHONE_NUMBER,
-                               body: message)
+                               body: message(status))
       end
 
       private
@@ -13,8 +13,9 @@ module Sms
         Twilio::REST::Client.new(TWILIO_ACCT_SID, TWILIO_AUTH_TOKEN)
       end
 
-      def message
-        "#{JOBS_AVAILABLE_MESSAGE}\n#{JOBS_URL}"
+      def message(status)
+        message = status == :down ? SITE_DOWN_MESSAGE : JOBS_AVAILABLE_MESSAGE
+        "#{message}\n#{JOBS_URL}"
       end
     end
   end
