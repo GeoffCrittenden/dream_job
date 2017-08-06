@@ -14,7 +14,7 @@ module Api
         if no_jobs_available?(response)
           render status: 200, json: { status: :no_jobs }
         else
-          Notifier.available_job!
+          Notifier.job_available!
           render status: 200, json: { status: :job_available }
         end
       end

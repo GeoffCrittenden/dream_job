@@ -5,7 +5,7 @@ describe Api::V1::JobsController, type: :controller do
 
   before do
     allow(Net::HTTP).to receive(:get_response).and_return(test_response)
-    allow(Notifier).to receive(:available_job!).and_return(nil)
+    allow(Notifier).to receive(:job_available!).and_return(nil)
   end
 
   it 'is able to connect to the remote url' do
@@ -27,7 +27,7 @@ describe Api::V1::JobsController, type: :controller do
 
   it 'calls the Notifier when there are jobs available' do
     allow(test_response).to receive(:body).and_return('')
-    expect(Notifier).to receive(:available_job!)
+    expect(Notifier).to receive(:job_available!)
     get :show
   end
 end

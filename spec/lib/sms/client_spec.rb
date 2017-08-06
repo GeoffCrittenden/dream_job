@@ -10,7 +10,7 @@ describe Sms::Client do
   describe '#send!' do
     it 'instantiates sms client and creates new message' do
       expect_any_instance_of(msg_list_class).to receive(:create)
-      Sms::Client.send!
+      Sms::Client.send!(:available)
     end
   end
 end
