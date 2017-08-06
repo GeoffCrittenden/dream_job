@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Notifier do
   before do
-    sms_msg_class = Twilio::REST::Api::V2010::AccountContext::MessageList
-    allow_any_instance_of(sms_msg_class).to receive(:create).and_return(nil)
+    msg_list_class = Twilio::REST::Api::V2010::AccountContext::MessageList
+    allow_any_instance_of(msg_list_class).to receive(:create).and_return(nil)
   end
 
   describe '#available_job!' do
