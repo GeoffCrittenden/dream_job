@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      get '/status', to: 'api#status'
       get '/available_jobs', to: 'jobs#show'
       resources :jobs, only: [:index]
     end

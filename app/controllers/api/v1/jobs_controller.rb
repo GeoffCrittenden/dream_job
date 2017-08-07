@@ -1,6 +1,6 @@
 module Api
   module V1
-    class JobsController < ApplicationController
+    class JobsController < ApiController
       # Utilizing Rails default routing to effect semantic results, since no
       # db/ActiveRecord being used.  Simply connecting to the remote host
       # is :index, while checking the /about/jobs page is :show.

@@ -12,4 +12,17 @@ describe Notifier do
       Notifier.job_available!
     end
   end
+
+  describe '#site_down!' do
+    it 'calls the sms notifications client' do
+      expect(Sms::Client).to receive(:send!)
+      Notifier.site_down!
+    end
+  end
+
+  describe '#status' do
+    it 'returns the correct status' do
+      expect(Notifier.send(:status, :site_down)).to eq(:down)
+    end
+  end
 end
