@@ -4,7 +4,7 @@ class Notifier
     # Break these out into explicit methods if needed
     %i[job_available site_down].each do |method_name|
       define_method("#{method_name}!") do
-        Sms::Client.send!(status(method_name))
+        send_msg!(status(method_name))
       end
     end
 
@@ -12,6 +12,10 @@ class Notifier
 
     def status(name)
       name.to_s.split('_').last.to_sym
+    end
+
+    def send_msg!(status)
+      Sms::Client.send!(status) if Rails.env.production?
     end
   end
 end
