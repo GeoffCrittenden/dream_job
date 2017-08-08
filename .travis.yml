@@ -1,12 +1,17 @@
 language: ruby
 rvm: 2.4.1
 cache: bundler
-bundler_args: --without development
+bundler_args: "--without development"
 env:
   global:
-    - JOBS_AVAILABLE_MESSAGE="Jobs have become available!"
-    - NO_JOBS_MESSAGE="We don't have any open positions right now"
-    - SITE_DOWN_MESSAGE="Jobs page is down!"
+  - JOBS_AVAILABLE_MESSAGE="Jobs have become available!"
+  - NO_JOBS_MESSAGE="We don't have any open positions right now"
+  - SITE_DOWN_MESSAGE="Jobs page is down!"
 script:
-  - script/run_rubocop.sh
-  - bundle exec rspec
+- script/run_rubocop.sh
+- bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: BJ8mdwXA3qhEgGZvFoon78vjIQQPbS1UH4Qk9RfDfHLRJpaqVSbf4xTvT4CL1u6Kqt7Wdwn5/t2hGJYa+CDgtwXnEaDz/SH087cAwufL8QYQKP1/q0swy8UpUMeLYG+oPOSZq44OppXleZH8kp4GaNUoSJL7C8mEYaxIk61r47LLCcMFzZUOVDnUudid5vWNB5w1pQLtKLmQLNJFfL5oaIb2oN3Ry6WfDUQm4pYtvyW/S+tqiSYzKoDktdg1yrjMN/1mNWIBhYBaY7/6y2wCDqLkoY4EzeU7gO+7cAXpiWztcDWeJJp95IgPquOmRq5W0aVKbHN5Buw1rnByyeF/RTrjHNVA7VG7p1xJNASkVVOcwO+KePfwnsMKIVFp+TfshBbKNvUDEjtwpXNrCoq9OsvKNWwW4IVJEyF+Ug6VY+PxDr9YkuuSuzzcZZs+HCCS+1/0vyrfpIsiWjU1knQi+pSufLyB8awXfSOEQjszSLNNYe1NLa8Ka90bCC+xpli1K0p2m4Rus5nWirVfajQOmw7XlBgdwA4k3Jfb4ya4j8T30HBmgUupoUVFhaBlVg8ObKcRZOCKdpfsE7eQb+wrDPCBCD7HvL+mjWRziFgV6O9ZLxEFwq8vM1wa1hMxQOswbWCF9NQ2kE6rvY06orndWRDD7UwYvxVyCj7NuLzUBIo=
+  app: mydreamjob
