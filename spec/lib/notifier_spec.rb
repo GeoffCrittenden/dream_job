@@ -7,15 +7,15 @@ describe Notifier do
   end
 
   describe '#job_available!' do
-    it 'calls the sms notifications client' do
-      expect(Sms::Client).to receive(:send!)
+    it 'calls sms client with :available' do
+      expect(Sms::Client).to receive(:send!).with(:available)
       Notifier.job_available!
     end
   end
 
   describe '#site_down!' do
-    it 'calls the sms notifications client' do
-      expect(Sms::Client).to receive(:send!)
+    it 'calls the sms client with :down' do
+      expect(Sms::Client).to receive(:send!).with(:down)
       Notifier.site_down!
     end
   end

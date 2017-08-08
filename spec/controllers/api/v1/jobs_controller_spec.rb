@@ -8,26 +8,30 @@ describe Api::V1::JobsController, type: :controller do
     allow(Notifier).to receive(:job_available!).and_return(nil)
   end
 
-  it 'is able to connect to the remote url' do
-    get :index
-    assert_response :ok
+  describe 'GET index' do
+    it 'is able to connect to the remote url' do
+      get :index
+      assert_response :ok
+    end
   end
 
-  it 'knows when there are no available jobs' do
-    allow(test_response).to receive(:body).and_return(NO_JOBS_MESSAGE)
-    get :show
-    expect(response.body).to eq({ status: :no_jobs }.to_json)
-  end
+  describe 'GET show' do
+    it 'knows when there are no available jobs' do
+      allow(test_response).to receive(:body).and_return(NO_JOBS_MESSAGE)
+      get :show
+      expect(response.body).to eq({ status: :no_jobs }.to_json)
+    end
 
-  it 'knows when there are available jobs' do
-    allow(test_response).to receive(:body).and_return('')
-    get :show
-    expect(response.body).to eq({ status: :job_available }.to_json)
-  end
+    it 'knows when there are available jobs' do
+      allow(test_response).to receive(:body).and_return('')
+      get :show
+      expect(response.body).to eq({ status: :job_available }.to_json)
+    end
 
-  it 'calls the Notifier when there are jobs available' do
-    allow(test_response).to receive(:body).and_return('')
-    expect(Notifier).to receive(:job_available!)
-    get :show
+    it 'calls the Notifier when there are jobs available' do
+      allow(test_response).to receive(:body).and_return('')
+      expect(Notifier).to receive(:job_available!)
+      get :show
+    end
   end
 end

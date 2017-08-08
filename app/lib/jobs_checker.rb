@@ -5,11 +5,7 @@ class JobsChecker
 
       return Notifier.site_down! unless response.is_a?(Net::HTTPSuccess)
 
-      if no_jobs_available?(response)
-        puts "\n[#{Time.now.strftime('%D - %T')}] - #{NO_JOBS_MESSAGE}"
-      else
-        Notifier.job_available!
-      end
+      Notifier.job_available! unless no_jobs_available?(response)
     end
 
     private
