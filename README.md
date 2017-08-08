@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/GeoffCrittenden/dream_job.svg?branch=master)](https://travis-ci.org/GeoffCrittenden/dream_job)
+
 # README
 
 This README would normally document whatever steps are necessary to get the
