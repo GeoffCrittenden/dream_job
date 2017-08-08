@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/GeoffCrittenden/dream_job.svg?branch=master)](https://travis-ci.org/GeoffCrittenden/dream_job)
+[![Coverage Status](https://coveralls.io/repos/github/GeoffCrittenden/dream_job/badge.svg?branch=master)](https://coveralls.io/github/GeoffCrittenden/dream_job?branch=master)
 
 # README
 
