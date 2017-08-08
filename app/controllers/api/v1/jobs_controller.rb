@@ -1,12 +1,12 @@
 module Api
   module V1
     class JobsController < ApiController
-      # Utilizing Rails default routing to effect semantic results, since no
-      # db/ActiveRecord being used.  Simply connecting to the remote host
-      # is :index, while checking the /about/jobs page is :show.
+      # Utilizing Rails default routing to effect semantic results,
+      # since no db/ActiveRecord being used.  Simply connecting to the
+      # remote host is :index, while checking the jobs page is :show.
       def index
-        response = fetch_response
-        render status: response_message(response), json: { status: response.msg }
+        resp = fetch_response
+        render status: response_message(resp), json: { status: resp.msg }
       end
 
       def show
