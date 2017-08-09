@@ -8,6 +8,6 @@ describe 'Routes', type: :request do
 
   it 'GET /status' do
     get '/status'
-    expect(response).to redirect_to('/api/v1/status')
+    expect(response).to have_http_status(:ok)
   end
 end
