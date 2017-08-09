@@ -2,7 +2,7 @@ class Notifier
   class << self
     # As the need for new notifications arises, add them here
     # Break these out into explicit methods if needed
-    %i[job_available site_down].each do |method_name|
+    %i[job_available site_down sms_check].each do |method_name|
       define_method("#{method_name}!") do
         send_msg!(status(method_name))
       end

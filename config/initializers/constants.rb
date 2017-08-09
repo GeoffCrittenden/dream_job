@@ -6,5 +6,6 @@ SITE_DOWN_MESSAGE      = ENV['SITE_DOWN_MESSAGE']      || DreamJob::CONFIG.job_i
 TWILIO_ACCT_SID        = ENV['TWILIO_ACCT_SID']        || DreamJob::CONFIG.twilio.acct_sid
 TWILIO_AUTH_TOKEN      = ENV['TWILIO_AUTH_TOKEN']      || DreamJob::CONFIG.twilio.auth_token
 FROM_PHONE_NUMBER      = ENV['FROM_PHONE_NUMBER']      || DreamJob::CONFIG.twilio.phone_number
+DAILY_SMS_CHECK        = ENV['DAILY_SMS_CHECK']        || DreamJob::CONFIG.twilio.daily_sms_string
 
 TO_PHONE_NUMBER        = ENV['TO_PHONE_NUMBER']        || DreamJob::CONFIG.phone_info.phone_number

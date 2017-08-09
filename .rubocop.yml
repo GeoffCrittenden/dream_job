@@ -24,3 +24,8 @@ Style/Documentation:
 Style/SymbolArray:
   Exclude:
     - 'config/routes.rb'
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+  Exclude:
+    - 'config/environments/**/*'
