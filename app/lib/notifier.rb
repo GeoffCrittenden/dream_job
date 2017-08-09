@@ -15,7 +15,7 @@ class Notifier
     end
 
     def send_msg!(status)
-      Sms::Client.send!(status) if Rails.env.production?
+      Sms::Client.send!(status)
     end
   end
 end

@@ -2,6 +2,7 @@ module Sms
   class Client
     class << self
       def send!(status)
+        return unless Rails.env.production?
         client.messages.create(from: FROM_PHONE_NUMBER,
                                to:   TO_PHONE_NUMBER,
                                body: message(status))

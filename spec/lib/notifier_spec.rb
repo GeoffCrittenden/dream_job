@@ -28,8 +28,6 @@ describe Notifier do
 
   describe '#send_msg!' do
     it 'calls Sms::Client#send!' do
-      allow(Rails.env).to receive(:production?).and_return(true)
-      allow(Sms::Client).to receive(:send!).and_return(nil)
       expect(Sms::Client).to receive(:send!)
       described_class.send(:send_msg!, :test)
     end
