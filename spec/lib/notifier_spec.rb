@@ -20,6 +20,13 @@ describe Notifier do
     end
   end
 
+  describe '#sms_check!' do
+    it 'calls send_msg! with :check' do
+      expect(described_class).to receive(:send_msg!).with(:check)
+      described_class.sms_check!
+    end
+  end
+
   describe '#status' do
     it 'returns the correct status' do
       expect(described_class.send(:status, :site_down)).to eq(:down)
