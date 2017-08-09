@@ -1,36 +1,24 @@
 require 'rails_helper'
 
 describe JobsChecker do
-  describe '#check_for_jobs' do
+  describe '#check!' do
     let(:response) { Net::HTTPOK.new(nil, 200, :OK) }
 
     before { allow(Net::HTTP).to receive(:get_response).and_return(response) }
 
-    context 'site down' do
-      it 'calls Notifier#site_down!' do
-        allow(Net::HTTP).to receive(:get_response).and_return(nil)
-        expect(Notifier).to receive(:site_down!)
-        described_class.check_for_jobs
-      end
+    it 'site down' do
+      allow(Net::HTTP).to receive(:get_response).and_return(Net::HTTPError)
+      expect(described_class.check!).to eq(:site_down)
     end
 
-    context 'no jobs available' do
-      methods_list = Notifier.methods - Class.methods
-      methods_list.each do |method|
-        it "does NOT call Notifier##{method}" do
-          allow(response).to receive(:body).and_return(NO_JOBS_MESSAGE)
-          expect(Notifier).to_not receive(method)
-          described_class.check_for_jobs
-        end
-      end
+    it 'no jobs available' do
+      allow(response).to receive(:body).and_return(NO_JOBS_MESSAGE)
+      expect(described_class.check!).to eq(:no_jobs)
     end
 
-    context 'jobs available' do
-      it 'calls Notifier#job_available!' do
-        allow(response).to receive(:body).and_return(JOBS_AVAILABLE_MESSAGE)
-        expect(Notifier).to receive(:job_available!)
-        described_class.check_for_jobs
-      end
+    it 'jobs available' do
+      allow(response).to receive(:body).and_return('')
+      expect(described_class.check!).to eq(:job_available)
     end
   end
 end

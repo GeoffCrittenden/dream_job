@@ -1,40 +1,13 @@
 module Api
   module V1
     class JobsController < ApiController
-      # Utilizing Rails default routing to effect semantic results,
-      # since no db/ActiveRecord being used.  Simply connecting to the
-      # remote host is :index, while checking the jobs page is :show.
-      def index
-        resp = fetch_response
-        render status: response_message(resp), json: { status: resp.msg }
-      end
-
+      # Utilizing Rails default routing to effect semantic results, since
+      # no db/ActiveRecord being used.  So checking the jobs page is :show.
       def show
-        response = fetch_response
-        if no_jobs_available?(response)
-          render status: 200, json: { status: :no_jobs }
-        else
-          Notifier.job_available!
-          render status: 200, json: { status: :job_available }
-        end
-      end
-
-      private
-
-      def request_uri
-        URI(JOBS_URL)
-      end
-
-      def fetch_response
-        Net::HTTP.get_response(request_uri)
-      end
-
-      def response_message(response)
-        response.msg.downcase.split(/\s/).join('_').to_sym
-      end
-
-      def no_jobs_available?(response)
-        response.body.include?(NO_JOBS_MESSAGE)
+        message = JobsChecker.check!
+        Notifier.job_available! if message == :job_available
+        Notifier.site_down!     if message == :site_down
+        render status: 200, json: { status: message }
       end
     end
   end
