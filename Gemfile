@@ -8,7 +8,7 @@ end
 gem 'figgy'
 gem 'newrelic_rpm'
 gem 'puma',  '~> 3.7'
-gem 'rails', '~> 5.1.3'
+gem 'rails', '~> 5.1'
 gem 'rubocop'
 gem 'twilio-ruby'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
