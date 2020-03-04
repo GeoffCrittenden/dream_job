@@ -7,7 +7,7 @@ end
 
 gem 'figgy'
 gem 'newrelic_rpm'
-gem 'puma',  '~> 3.7'
+gem 'puma',  '~> 3.12'
 gem 'rails', '~> 5.1'
 gem 'rubocop'
 gem 'twilio-ruby'
